@@ -1,3 +1,6 @@
+// Written by Juan Pablo Gutiérrez
+// A01286376
+
 #include "actividad.h"
 #include <iostream>
 
