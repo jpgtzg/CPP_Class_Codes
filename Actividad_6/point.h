@@ -1,6 +1,3 @@
-// Written by Juan Pablo Gutiérrez
-// A01286376
-
 #include <iostream>
 
 using namespace std;

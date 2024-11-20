@@ -1,5 +1,3 @@
-// Written by Juan Pablo Gutiérrez
-// A01286376
 
 #include "triangle.h"
 
@@ -35,5 +33,5 @@ double Triangle::getArea() {
 }
 
 void Triangle::print() {
-    cout << "Triangulo con vertices: " << vertex1.getX() << ", " << vertex1.getY() << ", " << vertex2.getX() << ", " << vertex2.getY() << ", " << vertex3.getX() << ", " << vertex3.getY() << endl;
+    cout << "Triangulo con vertices: (" << vertex1.getX() << ", " << vertex1.getY() << "), (" << vertex2.getX() << ", " << vertex2.getY() << "), (" << vertex3.getX() << ", " << vertex3.getY() << ")" << endl;
 }

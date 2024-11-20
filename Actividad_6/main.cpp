@@ -1,6 +1,3 @@
-// Written by Juan Pablo Gutiérrez
-// A01286376
-
 #include <iostream>
 #include "triangle.h"
 
@@ -14,9 +11,13 @@ void testTriangle()
 }
 
 int main()
-{
+{    
+    Triangle t4(Point(0, 0), Point(3, 0), Point(0, 4));
+    t4.print();
+
     testTriangle();
-    
+
+
     Triangle t1;
     cout << "Perimeter: " << t1.getPerimeter() << endl;
     cout << "Area: " << t1.getArea() << endl;

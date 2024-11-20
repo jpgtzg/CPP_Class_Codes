@@ -12,6 +12,7 @@ void testConstructores()
         cout << "Error en constructor default" << endl;
         return;
     }
+    a1.imprimeAlumno();
 
     // Prueba del constructor con parámetros
     Alumno a2("A01234567", "Juan Pérez", 20, "ITC");
@@ -20,6 +21,7 @@ void testConstructores()
         cout << "Error en constructor con parámetros" << endl;
         return;
     }
+    a2.imprimeAlumno();
 }
 
 void testSettersGetters()
@@ -38,16 +40,19 @@ void testSettersGetters()
         cout << "Error en setters/getters" << endl;
         return;
     }
+    alumno.imprimeAlumno();
 }
 
 void testCumpleaños()
 {
     Alumno alumno("A01234567", "Juan Pérez", 20, "ITC");
+    alumno.imprimeAlumno();
     alumno.cumpleaños();
     if (alumno.getEdad() != 21) {
         cout << "Error en cumpleaños" << endl;
         return;
     }
+    alumno.imprimeAlumno();
 }
 
 int main()
