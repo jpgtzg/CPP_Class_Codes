@@ -4,3 +4,4 @@ build/
 *.plist
 
 */main.dSYM/*
+.vscode/*
