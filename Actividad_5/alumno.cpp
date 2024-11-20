@@ -1,7 +1,7 @@
 // Written by Juan Pablo Gutiérrez
 // A01286376
 
-#include "actividad.h"
+#include "alumno.h"
 #include <iostream>
 
 using namespace std;

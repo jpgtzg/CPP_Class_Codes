@@ -1,5 +1,5 @@
-#include "actividad.h"
 #include <iostream>
+#include "alumno.h"
 
 using namespace std;
 
