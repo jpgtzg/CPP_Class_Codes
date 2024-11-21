@@ -67,5 +67,5 @@ void Fraccion::imprimeFraccion()
 
 Fraccion::~Fraccion()
 {
-    //cout << "Destructor de Fraccion" << num << "/" << den << endl;
+
 }
