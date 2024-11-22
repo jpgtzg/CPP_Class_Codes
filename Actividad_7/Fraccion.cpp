@@ -1,3 +1,5 @@
+// Written by Juan Pablo Gutiérrez
+// A01286376
 
 #include "Fraccion.h"
 #include <iostream>
