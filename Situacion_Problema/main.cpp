@@ -1,8 +1,11 @@
 #include "Inventario.h"
 #include "Producto.h"
 #include "Cliente.h"
+#include "Empleado.h"
 #include <iostream>
+#include "Pedido.h"
 using namespace std;
+
 
 int main()
 {
@@ -67,53 +70,79 @@ int main()
     return 0;
 }
 
-bool registrado = false;
-
 Cliente registrar_cliente()
 {
     Cliente cliente;
 
-    if (!registrado)
-    {
-        cout << "Bienvenido a la tienda de Maquillaje" << endl;
-        cout << "-------------------------------------" << endl;
+    cout << "Bienvenido a la tienda de Maquillaje" << endl;
+    cout << "-------------------------------------" << endl;
 
-        cout << "Ingrese su nombre: ";
-        string nombre;
-        cin >> nombre;
+    cout << "Ingrese su nombre: ";
+    string nombre;
+    cin >> nombre;
 
-        cout << "Ingrese su teléfono: ";
-        string telefono;
-        cin >> telefono;
+    cout << "Ingrese su teléfono: ";
+    string telefono;
+    cin >> telefono;
 
-        cout << "Ingrese su dirección: ";
-        string direccion;
-        cin >> direccion;
+    cout << "Ingrese su dirección: ";
+    string direccion;
+    cin >> direccion;
 
-        cout << "Ingrese su email: ";
-        string email;
-        cin >> email;
+    cout << "Ingrese su email: ";
+    string email;
+    cin >> email;
 
-        cout << "Ingrese su edad: ";
-        int edad;
-        cin >> edad;
+    cout << "Ingrese su edad: ";
+    int edad;
+    cin >> edad;
 
-        cliente.setNombre(nombre);
-        cliente.setEdad(edad);
-        cliente.setTelefono(telefono);
-        cliente.setDireccion(direccion);
-        cliente.setEmail(email);
-        registrado = true;
-    }
+    cliente.setNombre(nombre);
+    cliente.setEdad(edad);
+    cliente.setTelefono(telefono);
+    cliente.setDireccion(direccion);
+    cliente.setEmail(email);
     return cliente;
 }
 
-void menu_cliente(bool registrado)
+void menu_cliente(Inventario &inventario)
 {
+    Cliente cliente = registrar_cliente();
+    Pedido pedido;
 
     cout << "1. Ver inventario" << endl;
-    cout << "2. Comprar producto" << endl;
+    cout << "2. Generar pedido" << endl;
     cout << "3. Salir" << endl;
     int opcion;
     cin >> opcion;
+
+    while (true)
+    {
+        switch (opcion)
+        {
+        case 1:
+        {
+            inventario.imprimirInventario();
+            break;
+        }
+        case 2:
+        {
+            cout << "Ingrese el nombre del producto a agregar al pedido: ";
+            string nombre;
+            cin >> nombre;
+            pedido.agregarProducto(inventario.eliminarProducto(nombre));
+            break;
+        }
+        case 3:
+        {
+            cout << "Gracias por usar la tienda de Maquillaje" << endl;
+            exit(0);
+        }
+        default:
+        {
+            cout << "Opción inválida" << endl;
+            break;
+        }
+        }
+    }
 }

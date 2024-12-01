@@ -6,12 +6,12 @@ using namespace std;
 class Inventario
 {
 private:
-    unordered_map<string, int> productos;
+    unordered_map<string, pair<int, double>> productos;
 
 public:
     Inventario();
     Inventario(Producto productos[], int cantidad);
     void agregarProducto(Producto producto);
-    void eliminarProducto(string nombre);
+    Producto eliminarProducto(string nombre);
     void imprimirInventario();
 };  
