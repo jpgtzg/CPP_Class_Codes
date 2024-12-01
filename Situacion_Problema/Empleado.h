@@ -15,4 +15,5 @@ public:
     string getDepartamento();
     void mostrarInformacion();
 };
+
 #endif
