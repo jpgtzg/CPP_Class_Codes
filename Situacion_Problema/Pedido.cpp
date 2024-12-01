@@ -34,7 +34,10 @@ void Pedido::imprimePedido()
     for (int i = 0; i < productos.size(); i++)
     {
         productos[i].imprimeProducto();
+        cout << endl;
     }
+
+    cout << "Total: " << calcularTotal() << endl;
 }
 
 void Pedido::agregarProducto(Producto producto)
@@ -43,10 +46,24 @@ void Pedido::agregarProducto(Producto producto)
     cantidadProductos++;
 }
 
-void Pedido::eliminarProducto(int indice)
+Producto Pedido::eliminarProducto(string nombre)
 {
-    productos.erase(productos.begin() + indice);
-    cantidadProductos--;
+    int i;
+    for (i = 0; i < productos.size(); i++)
+    {
+        if (productos[i].getNombre() == nombre)
+        {
+            Producto producto = productos[i];
+            productos.erase(productos.begin() + i);
+            cantidadProductos--;
+            return producto;
+        }
+    }
+    if (i == productos.size())
+    {
+        cout << "Producto no encontrado" << endl;
+        return Producto();
+    }
 }
 
 double Pedido::calcularTotal()
@@ -57,4 +74,19 @@ double Pedido::calcularTotal()
         total += productos[i].getPrecio();
     }
     return total;
+}
+
+vector<Producto> Pedido::getProductos()
+{
+    return productos;
+}
+
+void Pedido::setCliente(Cliente cliente)
+{
+    clienteAtendido = cliente;
+}
+
+void Pedido::setEmpleado(Empleado empleado)
+{
+    empleadoAtendio = empleado;
 }

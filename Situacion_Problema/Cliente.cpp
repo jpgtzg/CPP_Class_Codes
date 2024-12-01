@@ -9,10 +9,11 @@ Cliente::Cliente() : Persona()
     email = "";
 }
 
-Cliente::Cliente(string nombre, int edad, string direccion, string telefono, string email) : Persona(nombre, edad, telefono)
+Cliente::Cliente(string nombre, int edad, string direccion, string telefono, string email, double saldo) : Persona(nombre, edad, telefono)
 {
     this->direccion = direccion;
     this->email = email;
+    this->saldo = saldo;
 }
 
 void Cliente::mostrarInformacion()
@@ -20,6 +21,7 @@ void Cliente::mostrarInformacion()
     Persona::mostrarInformacion();
     cout << "Direccion: " << getDireccion() << endl;
     cout << "Email: " << getEmail() << endl;
+    cout << "Saldo: " << getSaldo() << endl;
 }
 
 void Cliente::setDireccion(string direccion)
@@ -40,4 +42,14 @@ void Cliente::setEmail(string email)
 string Cliente::getEmail()
 {
     return email;
+}
+
+void Cliente::setSaldo(double saldo)
+{
+    this->saldo = saldo;
+}
+
+double Cliente::getSaldo()
+{
+    return saldo;
 }

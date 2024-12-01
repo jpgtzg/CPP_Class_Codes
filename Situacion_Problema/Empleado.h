@@ -1,3 +1,6 @@
+#ifndef EMPLEADO_H
+#define EMPLEADO_H
+
 #include "Persona.h"
 
 class Empleado : public Persona
@@ -12,3 +15,4 @@ public:
     string getDepartamento();
     void mostrarInformacion();
 };
+#endif

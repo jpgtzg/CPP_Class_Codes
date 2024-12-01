@@ -6,6 +6,8 @@
 #include "Pedido.h"
 using namespace std;
 
+void menu_cliente(Inventario &inventario);
+Cliente registrar_cliente();
 
 int main()
 {
@@ -23,49 +25,7 @@ int main()
     Producto productos[] = {rimel, mascara, labial, sombra, base, delineador};
     Inventario inventario(productos, 6);
 
-    while (true)
-    {
-
-        /*         cout << "Qué desea hacer?" << endl;
-                cout << "1. Agregar producto" << endl;
-                cout << "2. Eliminar producto" << endl;
-                cout << "3. Imprimir inventario" << endl;
-                cout << "4. Salir" << endl;
-                int opcion;
-                cin >> opcion;
-
-                switch (opcion)
-                {
-                case 1:
-                {
-                    cout << "Ingrese el nombre del producto: ";
-                    string nombre;
-                    cin >> nombre;
-                    cout << "Ingrese el precio del producto: ";
-                    double precio;
-                    cin >> precio;
-                    inventario.agregarProducto(Producto(nombre, precio));
-                    break;
-                }
-                case 2:
-                {
-                    cout << "Ingrese el nombre del producto a eliminar: ";
-                    string nombre;
-                    cin >> nombre;
-                    inventario.eliminarProducto(nombre);
-                    break;
-                }
-                case 3:
-                    inventario.imprimirInventario();
-                    break;
-                case 4:
-                    cout << "Gracias por usar la tienda de Maquillaje" << endl;
-                    exit(0);
-                default:
-                    cout << "Opción inválida" << endl;
-                    break;
-                } */
-    }
+    menu_cliente(inventario);
 
     return 0;
 }
@@ -73,9 +33,6 @@ int main()
 Cliente registrar_cliente()
 {
     Cliente cliente;
-
-    cout << "Bienvenido a la tienda de Maquillaje" << endl;
-    cout << "-------------------------------------" << endl;
 
     cout << "Ingrese su nombre: ";
     string nombre;
@@ -97,27 +54,42 @@ Cliente registrar_cliente()
     int edad;
     cin >> edad;
 
+    cout << "Ingrese su saldo: ";
+    double saldo;
+    cin >> saldo;
+
     cliente.setNombre(nombre);
     cliente.setEdad(edad);
     cliente.setTelefono(telefono);
     cliente.setDireccion(direccion);
     cliente.setEmail(email);
+    cliente.setSaldo(saldo);
     return cliente;
 }
 
 void menu_cliente(Inventario &inventario)
 {
     Cliente cliente = registrar_cliente();
+    Empleado empleado("Juan", 20, "1234567890", "Ventas");
     Pedido pedido;
+    pedido.setCliente(cliente);
+    pedido.setEmpleado(empleado);
 
-    cout << "1. Ver inventario" << endl;
-    cout << "2. Generar pedido" << endl;
-    cout << "3. Salir" << endl;
-    int opcion;
-    cin >> opcion;
-
+    cout << "\033[2J\033[1;1H";
     while (true)
     {
+        cout << endl;
+        cout << "-------------------------------------" << endl;
+        cout << endl;
+
+        cout << "1. Ver inventario" << endl;
+        cout << "2. Agregar producto al pedido" << endl;
+        cout << "3. Eliminar producto del pedido" << endl;
+        cout << "4. Ver pedido" << endl;
+        cout << "5. Pagar pedido" << endl;
+        cout << "6. Salir" << endl;
+        int opcion;
+        cin >> opcion;
         switch (opcion)
         {
         case 1:
@@ -130,10 +102,67 @@ void menu_cliente(Inventario &inventario)
             cout << "Ingrese el nombre del producto a agregar al pedido: ";
             string nombre;
             cin >> nombre;
-            pedido.agregarProducto(inventario.eliminarProducto(nombre));
+            Producto producto = inventario.eliminarProducto(nombre);
+            if (producto.getNombre() != "")
+            {
+                pedido.agregarProducto(producto);
+                cout << "Producto agregado al pedido" << endl;
+            }
+            else
+            {
+                cout << "Producto no disponible" << endl;
+            }
             break;
         }
         case 3:
+        {
+            cout << "Ingrese el nombre del producto a eliminar del pedido: ";
+            string nombre;
+            cin >> nombre;
+            Producto producto = pedido.eliminarProducto(nombre);
+            if (producto.getNombre() != "")
+            {
+                inventario.agregarProducto(producto);
+                cout << "Producto eliminado del pedido" << endl;
+            }
+            else
+            {
+                cout << "Producto no encontrado en el pedido" << endl;
+            }
+            break;
+        }
+        case 4:
+        {
+            if (pedido.getProductos().size() == 0)
+            {
+                cout << "No hay productos en el pedido" << endl;
+            }
+            else
+            {
+                pedido.imprimePedido();
+            }
+            break;
+        }
+        case 5:
+        {
+            double total = pedido.calcularTotal();
+            cout << "El total del pedido es: " << total << endl;
+            if (cliente.getSaldo() >= total)
+            {
+                cliente.setSaldo(cliente.getSaldo() - total);
+                cout << "El saldo del cliente es: " << cliente.getSaldo() << endl;
+                cout << "Pedido realizado con éxito" << endl;
+                pedido = Pedido();
+                pedido.setCliente(cliente);
+                pedido.setEmpleado(empleado);
+            }
+            else
+            {
+                cout << "El saldo del cliente es insuficiente" << endl;
+            }
+            break;
+        }
+        case 6:
         {
             cout << "Gracias por usar la tienda de Maquillaje" << endl;
             exit(0);

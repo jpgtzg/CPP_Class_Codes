@@ -18,6 +18,9 @@ public:
     Pedido(int id, Cliente clienteAtendido, Empleado empleadoAtendio, Producto productos[]);
     void imprimePedido();
     void agregarProducto(Producto producto);
-    void eliminarProducto(int indice);
+    Producto eliminarProducto(string nombre);
     double calcularTotal();
+    vector<Producto> getProductos();
+    void setCliente(Cliente cliente);
+    void setEmpleado(Empleado empleado);
 };
