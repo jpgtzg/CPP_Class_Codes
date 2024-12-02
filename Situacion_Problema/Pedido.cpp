@@ -1,4 +1,3 @@
-
 #include "Pedido.h"
 #include <iostream>
 using namespace std;
@@ -12,17 +11,13 @@ Pedido::Pedido()
     empleadoAtendio = Empleado();
 }
 
-Pedido::Pedido(int id, Cliente clienteAtendido, Empleado empleadoAtendio, Producto productos[])
+Pedido::Pedido(int id, Cliente clienteAtendido, Empleado empleadoAtendio, const vector<Producto>& productos)
 {
     this->id = id;
     this->clienteAtendido = clienteAtendido;
     this->empleadoAtendio = empleadoAtendio;
-    this->cantidadProductos = sizeof(productos) / sizeof(productos[0]);
-
-    for (int i = 0; i < this->cantidadProductos; i++)
-    {
-        this->productos.push_back(productos[i]);
-    }
+    this->productos = productos;
+    this->cantidadProductos = productos.size();
 }
 
 void Pedido::imprimePedido()

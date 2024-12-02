@@ -15,7 +15,7 @@ private:
 
 public:
     Pedido();
-    Pedido(int id, Cliente clienteAtendido, Empleado empleadoAtendio, Producto productos[]);
+    Pedido(int id, Cliente clienteAtendido, Empleado empleadoAtendio, const vector<Producto>& productos);
     void imprimePedido();
     void agregarProducto(Producto producto);
     Producto eliminarProducto(string nombre);

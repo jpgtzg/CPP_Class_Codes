@@ -60,5 +60,10 @@ void Inventario::imprimirInventario()
         cout << "Producto: " << pair.first
              << ", Cantidad: " << pair.second.first
              << ", Precio: $" << pair.second.second << endl;
+    } 
+
+    if (productos.empty())
+    {
+        cout << "El inventario está vacío." << endl;
     }
 }
