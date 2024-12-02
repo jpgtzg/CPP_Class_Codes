@@ -20,12 +20,10 @@ void Inventario::agregarProducto(Producto producto)
 {
     if (productos.find(producto.getNombre()) == productos.end())
     {
-        // If product doesn't exist, add it with quantity 1
         productos[producto.getNombre()] = make_pair(1, producto.getPrecio());
     }
     else
     {
-        // If product exists, increment quantity and maintain the same price
         productos[producto.getNombre()].first += 1;
     }
 }
@@ -40,10 +38,8 @@ Producto Inventario::eliminarProducto(string nombre)
         double precio = productos[nombre].second;
         producto = Producto(nombre, precio);
 
-        // Decrease quantity by 1
         productos[nombre].first--;
 
-        // If quantity reaches 0, remove the product entirely
         if (productos[nombre].first <= 0)
         {
             productos.erase(nombre);
